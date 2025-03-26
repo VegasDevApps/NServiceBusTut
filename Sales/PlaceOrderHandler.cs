@@ -9,6 +9,8 @@ public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger)
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
         logger.LogInformation("Received PlaceOrder, OrderId = {orderId}", message.OrderId);
+            
+        //throw new Exception("Big Baga Boom!");
         
         if(Random.Shared.Next(0, 5) == 0)
         {
