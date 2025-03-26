@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="../Billing.Messages/Billing.Messages.csproj" />
     <ProjectReference Include="../Messages/Sales.Messages.csproj" />
+    <ProjectReference Include="../Shipping.Messages/Shipping.Messages.csproj" />
   </ItemGroup>
 
 </Project>

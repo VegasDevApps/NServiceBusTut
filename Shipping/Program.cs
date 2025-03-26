@@ -10,6 +10,8 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 endpointConfiguration.UseTransport(new LearningTransport());
 
+var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+
 builder.UseNServiceBus(endpointConfiguration);
 
 await builder.Build().RunAsync();
