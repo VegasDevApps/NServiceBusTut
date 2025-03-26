@@ -13,7 +13,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 var transport = endpointConfiguration.UseTransport(new LearningTransport());
 transport.RouteToEndpoint(typeof(PlaceOrder), "Sales");
-
+transport.RouteToEndpoint(typeof(CancelOrder), "Sales");
 builder.UseNServiceBus(endpointConfiguration);
 builder.Services.AddHostedService<InputLoopService>();
 

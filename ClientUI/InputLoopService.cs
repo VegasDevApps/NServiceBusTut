@@ -8,13 +8,15 @@ public class InputLoopService(IMessageSession messageSession)
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        while(true)
+        var lastOrder = string.Empty;
+
+        while (true)
         {
-            Console.WriteLine("Press 'P' to place an order, or 'Q' to quit.");
+            Console.WriteLine("Press 'P' to place an order, 'C' to cancel an order, or 'Q' to quit.");
             var key = Console.ReadKey();
             Console.WriteLine();
 
-            switch(key.Key)
+            switch (key.Key)
             {
                 case ConsoleKey.P:
                     // Instantiate the command
@@ -22,6 +24,15 @@ public class InputLoopService(IMessageSession messageSession)
                     // Send the command
                     Console.WriteLine($"Sending PlaceOrder command, OrderId = {command.OrderId}");
                     await messageSession.Send(command, stoppingToken);
+                    lastOrder = command.OrderId;
+                    break;
+                case ConsoleKey.C:
+                    var cancelCommand = new CancelOrder
+                    {
+                        OrderId = lastOrder
+                    };
+                    await messageSession.Send(cancelCommand);
+                    Console.WriteLine($"Sent a CancelOrder command, {cancelCommand.OrderId}");
                     break;
                 case ConsoleKey.Q:
                     return;

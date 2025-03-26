@@ -9,6 +9,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 var recoverability = endpointConfiguration.Recoverability();
 //recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
+var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
 
 builder.UseNServiceBus(endpointConfiguration);
 
